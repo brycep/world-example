@@ -8,7 +8,7 @@
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Getting Started with Spring on JBoss</name>
+    <name>Example project for the Art of Hibernate Optimization talk</name>
 
     <properties>
                 <!-- Spring version -->
@@ -29,7 +29,7 @@
     <dependencyManagement>
 
 		<dependencies>
-                        <!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
+            <!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
                 dependencies from org.jboss.spec will have their version defined by this
                 BOM -->
             <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
@@ -233,4 +233,8 @@
         </plugins>
     </build>
 
+    <organization>
+    	<name>Servo Labs, LLC</name>
+    	<url>http://www.servolabs.com</url>
+    </organization>
 </project>

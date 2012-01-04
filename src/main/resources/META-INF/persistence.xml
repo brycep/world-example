@@ -3,15 +3,16 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" 
 	version="2.0">
 	
-   <persistence-unit name="helloPU" transaction-type="JTA">
-       <!--
-           Using the example datasource set up by JBoss AS 7
-           For your application, set up a managed datasource and
-           use that instead
-       -->
-       <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
-
+   <persistence-unit name="worldPU" transaction-type="RESOURCE_LOCAL">
+<!--        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+ -->
        <properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="validate"/>
+			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+			<property name="hibernate.connection.username" value="sa"/>
+			<property name="hibernate.connection.password" value=""/>
+			<property name="hibernate.connection.url" value="jdbc:hsqldb:file:classpath:/world_example"/>
             <property name="hibernate.show_sql" value="true"/>
        </properties>
    </persistence-unit>
