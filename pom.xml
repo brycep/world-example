@@ -23,6 +23,9 @@
 
         <!-- JBoss AS plugin for deployment -->
         <version.jboss.as.maven.plugin>7.0.2.Final</version.jboss.as.maven.plugin>
+        
+        <!-- Hibernate  -->
+        <version.hibernate>3.5.4-Final</version.hibernate>
 
     </properties>
 
@@ -126,11 +129,6 @@
                 <artifactId>commons-logging</artifactId>
                 <version>${version.commons.logging}</version>
             </dependency>
-            <dependency>
-            	<groupId>org.hsqldb</groupId>
-            	<artifactId>hsqldb</artifactId>
-            	<version>2.2.6</version>
-            </dependency>
 		</dependencies>
     </dependencyManagement>
 
@@ -212,6 +210,50 @@
         <dependency>
         	<groupId>org.hsqldb</groupId>
         	<artifactId>hsqldb</artifactId>
+        	<version>2.2.6</version>
+        </dependency>
+        <dependency>
+        	<groupId>junit</groupId>
+        	<artifactId>junit</artifactId>
+        	<version>4.10</version>
+        	<scope>test</scope>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-test</artifactId>
+        	<version>${version.spring}</version>
+        	<scope>test</scope>
+        </dependency>
+        
+        <!--  Hibernate dependencies -->
+        <dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate</artifactId>
+        	<version>${version.hibernate}</version>
+        	<type>pom</type>
+        </dependency>
+        <dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-annotations</artifactId>
+        	<version>${version.hibernate}</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-entitymanager</artifactId>
+        	<version>${version.hibernate}</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>ejb3-persistence</artifactId>
+        	<version>1.0.2.GA</version>
+        	<type>pom</type>
+        </dependency>
+
+
+        <dependency>
+        	<groupId>org.slf4j</groupId>
+        	<artifactId>slf4j-api</artifactId>
+        	<version>1.6.4</version>
         </dependency>
     </dependencies>
 

@@ -4,15 +4,15 @@
 	version="2.0">
 	
    <persistence-unit name="worldPU" transaction-type="RESOURCE_LOCAL">
-<!--        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
- -->
+ 	   <provider>org.hibernate.ejb.HibernatePersistence</provider>
        <properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-			<property name="hibernate.hbm2ddl.auto" value="validate"/>
+<!--  			<property name="hibernate.hbm2ddl.auto" value="validate"/> --> 
 			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
 			<property name="hibernate.connection.username" value="sa"/>
 			<property name="hibernate.connection.password" value=""/>
-			<property name="hibernate.connection.url" value="jdbc:hsqldb:file:classpath:/world_example"/>
+<!--  			<property name="hibernate.connection.url" value="jdbc:hsqldb:file:~/tutorial-db/world_example;create"/>
+ --> 			 
             <property name="hibernate.show_sql" value="true"/>
        </properties>
    </persistence-unit>

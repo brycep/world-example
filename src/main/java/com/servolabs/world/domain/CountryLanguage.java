@@ -1,19 +1,16 @@
 package com.servolabs.world.domain;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="COUNTRYLANGUAGE")
+@Table(name="countrylanguage", schema="public")
 public class CountryLanguage {
 
-	@Id
-	private String countryCode;
-	
-	@Id
-	private String language;
+	@EmbeddedId
+	private CountryLanguagePk pk;
 	
 	// TODO:  Turn this into a boolean
 	@Column
@@ -26,20 +23,12 @@ public class CountryLanguage {
 		
 	}
 
-	public String getCountryCode() {
-		return countryCode;
+	public CountryLanguagePk getPk() {
+		return pk;
 	}
 
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
-
-	public String getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setPk(CountryLanguagePk pk) {
+		this.pk = pk;
 	}
 
 	public String getIsOfficial() {

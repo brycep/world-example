@@ -1,8 +1,5 @@
 package com.servolabs.world.web;
 
-import com.servolabs.world.domain.User;
-import com.servolabs.world.domain.UserDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("greet")
 public class GreetController {
 
-    @Autowired
-    private UserDao userDao;
+//    @Autowired
+//    private UserDao userDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public
@@ -27,11 +24,12 @@ public class GreetController {
     public
     @ModelAttribute("message")
     String getGreeting(@RequestParam("username") String username) {
-        User user = userDao.getForUsername(username);
-        if (user != null) {
-            return "Hello, " + user.getFirstName() + " " + user.getLastName() + "!";
-        } else {
-            return "No such user exists! Use 'emuster' or 'jdoe'";
-        }
+//        User user = userDao.getForUsername(username);
+//        if (user != null) {
+//            return "Hello, " + user.getFirstName() + " " + user.getLastName() + "!";
+//        } else {
+//            return "No such user exists! Use 'emuster' or 'jdoe'";
+//        }
+    	return "";
     }
 }

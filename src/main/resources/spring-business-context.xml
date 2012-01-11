@@ -4,6 +4,7 @@
    xmlns:jee="http://www.springframework.org/schema/jee"
    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
    xmlns:tx="http://www.springframework.org/schema/tx"
+   xmlns:p="http://www.springframework.org/schema/p"
    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
@@ -12,28 +13,18 @@
 
    <!-- Scan the the domain package for Spring repositories and services -->
    <context:component-scan base-package="com.servolabs.world.domain" />
+   <context:component-scan base-package="com.servolabs.world.dao" />
 
-   <!-- Look up the database in JNDI -->
-   <jee:jndi-lookup jndi-name="java:jboss/datasources/ExampleDS" id="dataSource"
-      expected-type="javax.sql.DataSource" />
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
 
-   <!-- Look up the container deployed EntityManager -->
-   <jee:jndi-lookup jndi-name="java:comp/env/hello/EntityManager"
-      id="entityManager" expected-type="javax.persistence.EntityManager" />
+ 	<jdbc:embedded-database id="dataSource" type="HSQL" >
+        <jdbc:script location="classpath:world.sql"/>
+    </jdbc:embedded-database>
 
-   <!-- Use JTA transactions with the container-deployed EntityManager -->
-   <tx:jta-transaction-manager />
-
-   <!-- Use declarative transactions on the services -->
-   <tx:annotation-driven />
-
-   <!--
-      Initialize the database. Used for a proof-of-concept only.
-      In a production application,  the tables and data are already
-      existing, so you should disable this definition.
-   -->
-   <jdbc:initialize-database data-source="dataSource">
-      <jdbc:script location="classpath*:init-db.sql" />
-   </jdbc:initialize-database>
-
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+ 	    <property name="persistenceUnitName" value="worldPU"/>
+ 	    <property name="dataSource" ref="dataSource" />
+	</bean>
+    
 </beans>

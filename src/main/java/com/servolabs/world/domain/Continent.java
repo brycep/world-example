@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CONTINENT")
+@Table(name="continent")
 public class Continent {
 
 	@Id

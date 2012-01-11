@@ -1660,3 +1660,24 @@ org.h2.jdbc.JdbcSQLException: Feature not supported: "clientInfoProperties" [501
 01-06 08:01:24 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Data conversion error converting "Caribbean"; SQL statement:
 update COUNTRY SET region = 'North America' where region = 3 [22018-162]
+01-08 11:49:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Feature not supported: "clientInfoProperties" [50100-162]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:204)
+	at org.h2.message.TraceObject.unsupported(TraceObject.java:391)
+	at org.h2.jdbc.JdbcDatabaseMetaData.getClientInfoProperties(JdbcDatabaseMetaData.java:2806)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.sourceforge.squirrel_sql.fw.sql.MetaDataDataSet.executeGetter(MetaDataDataSet.java:255)
+	at net.sourceforge.squirrel_sql.fw.sql.MetaDataDataSet.generateLine(MetaDataDataSet.java:222)
+	at net.sourceforge.squirrel_sql.fw.sql.MetaDataDataSet.load(MetaDataDataSet.java:149)
+	at net.sourceforge.squirrel_sql.fw.sql.MetaDataDataSet.<init>(MetaDataDataSet.java:96)
+	at net.sourceforge.squirrel_sql.fw.sql.MetaDataDecoratorDataSet.<init>(MetaDataDecoratorDataSet.java:73)
+	at net.sourceforge.squirrel_sql.client.session.mainpanel.objecttree.tabs.database.MetaDataTab.createDataSet(MetaDataTab.java:74)
+	at net.sourceforge.squirrel_sql.client.session.mainpanel.objecttree.tabs.BaseDataSetTab$1.run(BaseDataSetTab.java:123)
+	at net.sourceforge.squirrel_sql.fw.util.TaskExecuter.run(TaskExecuter.java:82)
+	at java.lang.Thread.run(Thread.java:680)

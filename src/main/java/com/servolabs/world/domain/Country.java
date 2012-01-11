@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="COUNTRY")
+@Table(name="country", schema="public")
 public class Country {
 	
 	@Id
