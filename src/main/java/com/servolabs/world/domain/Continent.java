@@ -17,8 +17,7 @@ public class Continent {
 	@Column
 	private String name;
 	
-	public Continent() {
-		
+	public Continent() {	
 	}
 
 	public Continent(Long id, String name) {
