@@ -8,5 +8,6 @@ import com.servolabs.world.domain.Country;
 public interface CountryDao {
 	
 	List<Country> getCountrysForContinent(Continent contenent);
+	Country find(String name);
 
 }

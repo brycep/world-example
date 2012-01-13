@@ -1,10 +1,14 @@
 package com.servolabs.world.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -56,6 +60,9 @@ public class Country {
 	
 	@Column
 	private String code2;
+	
+	@OneToMany(mappedBy="country")
+	private Set<City> cities = new HashSet<City>();
 	
 	public Country()  {
 		
@@ -180,4 +187,13 @@ public class Country {
 	public void setCode2(String code2) {
 		this.code2 = code2;
 	}
+
+	public Set<City> getCities() {
+		return cities;
+	}
+
+	public void setCities(Set<City> cities) {
+		this.cities = cities;
+	}
+
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.servolabs.world.domain.City;
 import com.servolabs.world.domain.Continent;
 import com.servolabs.world.domain.Country;
 
@@ -43,6 +45,15 @@ public class CountryJpaDaoTest {
 		assertFalse(countries.isEmpty());
 		
 		logger.info("Successfully retrieved " + countries.size() + " countries.");
+	}
+	
+	// This test will demonstrate how you can change your query to force eager loading
+	// of data to occur.
+	@Test
+	public void findAllCitiesInUS()  {
+		Country country = (Country) countryDao.find("United States");
+		Set<City> cityList = country.getCities();
+		logger.info("First City found: " + cityList.iterator().next().getName());
 	}
 
 }
