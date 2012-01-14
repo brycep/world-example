@@ -1,14 +1,12 @@
 package com.servolabs.world.dao;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.servolabs.world.domain.City;
-import com.servolabs.world.domain.Continent;
 import com.servolabs.world.domain.Country;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,22 +27,6 @@ public class CountryJpaDaoTest {
 	
 	@Autowired
 	private CountryJpaDao countryDao;
-    @PersistenceContext
-    private EntityManager entityManager;
-	
-	@Test
-	public void findAllNorthAmericanCountries()  {
-		
-		Continent northAmerica = 
-				(Continent) entityManager.createQuery("from Continent where name = 'North America'")
-				.getSingleResult();
-		
-		List<Country> countries = countryDao.getCountrysForContinent(northAmerica);
-		assertNotNull(countries);
-		assertFalse(countries.isEmpty());
-		
-		logger.info("Successfully retrieved " + countries.size() + " countries.");
-	}
 	
 	// This test will demonstrate how you can change your query to force eager loading
 	// of data to occur.
@@ -54,6 +35,17 @@ public class CountryJpaDaoTest {
 		Country country = (Country) countryDao.find("United States");
 		Set<City> cityList = country.getCities();
 		logger.info("First City found: " + cityList.iterator().next().getName());
+		for(City city : cityList)  {
+			assertNotNull(city.getName());
+		}
+	}
+	
+	@Test
+	public void findAllCountriesInContinentLoadsTheCorrectContinent()  {
+		List<Country> countryList = countryDao.getCountriesForContinent("North America");
+		for(Country country : countryList)  {
+			assertEquals("North America", country.getContinent().getName().trim());
+		}
 	}
 
 }

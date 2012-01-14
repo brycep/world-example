@@ -8,6 +8,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="continent")
+
+// Uncomment these lines to get L2 Cache capabilities
+//@Cacheable
+//@Cache(usage=CacheConcurrencyStrategy.READ_ONLY	)
 public class Continent {
 
 	@Id

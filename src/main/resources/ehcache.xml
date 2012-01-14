@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+
+	<defaultCache
+       maxEntriesLocalHeap="10000"
+       eternal="false"
+       timeToIdleSeconds="120"
+       timeToLiveSeconds="120"
+       overflowToDisk="true"
+       maxEntriesLocalDisk="10000000"
+       diskPersistent="false"
+       diskExpiryThreadIntervalSeconds="120"
+       memoryStoreEvictionPolicy="LRU"
+       />
+
+	<cache name="com.servolabs.world.domain.Continent"
+			maxEntriesLocalHeap="10000"
+			eternal="false"
+			timeToIdleSeconds="300"
+			timeToLiveSeconds="600"
+			overflowToDisk="false"
+	/>
+</ehcache>
