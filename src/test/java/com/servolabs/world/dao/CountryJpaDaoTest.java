@@ -2,6 +2,7 @@ package com.servolabs.world.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Set;
@@ -66,7 +67,22 @@ public class CountryJpaDaoTest {
 		log.info("Query Hit ratio:" + cacheHitRatio);
 
 	}
-
+	
+	@Test
+	public void findCountriesForRegion_QueryCacheTest()  {
+		String region = "Western Africa";
+		List<Country> countryList = countryDao.findCountriesInRegion(region);
+		
+		assertNotNull(countryList);
+		assertTrue(0 != countryList.size());
+		System.out.println("Found " + countryList.size() + " objects");
+		
+		countryList = countryDao.findCountriesInRegion(region);
+		System.out.println("Found " + countryList.size() + " objects");
+		
+		countryDao.findCountriesInRegion(region);
+	}
+	
 	private Statistics getStatistics() {
 		return ((Session)entityManager.getDelegate()).getSession(EntityMode.POJO).getSessionFactory().getStatistics();
     }

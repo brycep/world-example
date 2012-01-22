@@ -8,5 +8,6 @@ public interface CountryDao {
 	
 	List<Country> getCountriesForContinent(String contenentName);
 	Country find(String name);
+	List<Country> findCountriesInRegion(String regionName);
 
 }

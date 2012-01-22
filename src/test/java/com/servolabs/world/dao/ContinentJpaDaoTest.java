@@ -26,6 +26,10 @@ public class ContinentJpaDaoTest {
 		List<Continent> allContinents = continentDao.findAll();
 		assertNotNull(allContinents);
 		assertFalse(allContinents.isEmpty());
+		System.out.println("Found " + allContinents.size() + " continents.");
+		
+		continentDao.findAll();
+		
 	}
-
+	
 }

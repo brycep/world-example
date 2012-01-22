@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,17 @@ public class CountryJpaDao implements CountryDao {
 	public Country find(String countryName)  {
 		return (Country) entityManager.createQuery("from Country country where country.name = :countryName")
 				.setParameter("countryName", countryName).getSingleResult();
+	}
+
+	@Override
+	public List<Country> findCountriesInRegion(String regionName) {
+		Query query = entityManager.createQuery("from Country country where country.region = :regionName")
+				.setParameter("regionName", regionName);
+		 // If you're using the Hibernate API directly, use setCachable(true) and setCacheRegion("countryQueryCache")
+		 // calls
+		query.setHint("org.hibernate.cacheable", true);
+		query.setHint("org.hibernate.cacheRegion", "countryQueryCache");
+		return query.getResultList();
 	}
 
 }

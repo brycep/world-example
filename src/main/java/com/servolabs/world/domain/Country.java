@@ -3,16 +3,33 @@ package com.servolabs.world.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.QueryHint;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Table(name="country", schema="public")
+@NamedQueries({
+    @NamedQuery(
+            name = "Country.findByRegionName",
+            query = "from Country country where country.region = :regionName",
+            hints = {@QueryHint(name = "org.hibernate.cacheable", value = "true"),
+            		 @QueryHint(name = "org.hibernate.cacheRegion", value = "countryQueryCache")}
+    )
+})
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 public class Country {
 	
 	@Id
