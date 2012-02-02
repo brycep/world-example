@@ -20,9 +20,6 @@ public class City {
 	private String name;
 	
 	@Column
-	private String countryCode;
-	
-	@Column
 	private String district;
 	
 	@Column
@@ -50,14 +47,6 @@ public class City {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getCountryCode() {
-		return countryCode;
-	}
-
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
 	}
 
 	public String getDistrict() {
