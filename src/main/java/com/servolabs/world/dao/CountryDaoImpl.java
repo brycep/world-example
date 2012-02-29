@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.servolabs.world.domain.Country;
+import com.servolabs.world.domain.CountryLanguage;
 
 @Repository
 @SuppressWarnings("unchecked")
@@ -50,6 +51,14 @@ public class CountryDaoImpl implements CountryDao {
 		query.setHint("org.hibernate.cacheable", true);
 		query.setHint("org.hibernate.cacheRegion", "countryQueryCache");
 		return query.getResultList();
+	}
+	
+	@Override
+	public List<CountryLanguage> findLanguagesUsingNativeQuery(String countryCode)  {
+		Query query = entityManager
+				.createNamedQuery("findLanguagesForCountry")
+				.setParameter("countryCode", countryCode);
+		return (List<CountryLanguage>)query.getResultList();
 	}
 
 }

@@ -22,9 +22,5 @@ public class CityDaoImpl implements CityDao {
 		Query query = entityManager.createQuery("select c from City c");
 		return (List<City>)query.getResultList().subList(fromIndex, toIndex);
 	}
-	
-	
-	
-	
 
 }

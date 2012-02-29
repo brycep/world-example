@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.servolabs.world.domain.City;
 import com.servolabs.world.domain.Country;
+import com.servolabs.world.domain.CountryLanguage;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/spring-business-context.xml")
@@ -47,6 +49,17 @@ public class CountryDaoImplTest {
 		for(City city : cityList)  {
 			assertNotNull(city.getName());
 		}
+	}
+	
+	//////////////////////////////
+	//  Native Query Examples   //
+	//////////////////////////////
+	@Test
+	public void findLanguages()  {
+		String countryCode = "CAN";
+		Collection<CountryLanguage> languages = countryDao.findLanguagesUsingNativeQuery(countryCode);
+
+		assertEquals(12, languages.size());
 	}
 	
 	///////////////////////

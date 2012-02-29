@@ -3,8 +3,24 @@ package com.servolabs.world.domain;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EntityResult;
+import javax.persistence.FieldResult;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 
+@NamedNativeQuery(name="findLanguagesForCountry",
+		query="select CountryCode, Language, IsOfficial, Percentage from CountryLanguage where CountryCode = :countryCode",
+		resultSetMapping="languageMapping")
+@SqlResultSetMapping(name="languageMapping",
+		entities={
+			@EntityResult(entityClass=CountryLanguage.class, fields= {
+				@FieldResult(name="pk.countryCode", column="CountryCode"),
+				@FieldResult(name="pk.language", column="Language"),
+				@FieldResult(name="isOfficial", column="IsOfficial"),
+				@FieldResult(name="percentage", column="Percentage")
+			})
+})
 @Entity
 @Table(name="countrylanguage", schema="public")
 public class CountryLanguage {
