@@ -20,7 +20,9 @@ public class CityDaoImpl implements CityDao {
 	@Override
 	public List<City> findAllCities(int fromIndex, int toIndex) {
 		Query query = entityManager.createQuery("select c from City c");
-		return (List<City>)query.getResultList().subList(fromIndex, toIndex);
+		query.setFirstResult(fromIndex);
+		query.setMaxResults(toIndex - fromIndex);
+		return (List<City>)query.getResultList();
 	}
 
 }
