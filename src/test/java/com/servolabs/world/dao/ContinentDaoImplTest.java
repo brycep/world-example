@@ -27,7 +27,8 @@ public class ContinentDaoImplTest {
 		assertNotNull(allContinents);
 		assertFalse(allContinents.isEmpty());
 		System.out.println("Found " + allContinents.size() + " continents.");
-		
+
+        // Let's try finding our contents again
 		continentDao.findAll();
 		
 	}
