@@ -1,17 +1,15 @@
 package com.servolabs.world.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="continent")
 
 // Uncomment these lines to get L2 Cache capabilities
 //@Cacheable
-//@Cache(usage=CacheConcurrencyStrategy.READ_ONLY	)
+//@org.hibernate.annotations.Cache(usage= CacheConcurrencyStrategy.READ_ONLY	)
 public class Continent {
 
 	@Id
