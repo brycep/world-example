@@ -67,6 +67,10 @@ public class CountryDaoImplTest {
 	///////////////////////
 	@Test
 	public void findAllCountriesInContinentLoadsTheCorrectContinent()  {
+
+        //  For this test, make sure to run the entire test suite, then look at how
+        // many times we queried for Continents.
+
 		List<Country> countryList = countryDao.getCountriesForContinent("North America");
 		for(Country country : countryList)  {
 			assertEquals("North America", country.getContinent().getName().trim());
